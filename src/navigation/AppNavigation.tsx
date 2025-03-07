@@ -4,17 +4,14 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "../screen/Home";
 import Checkout from "../screen/Checkout";
 import Cart from "../screen/Cart";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { style } from "../styles/Stylesheet";
 import { useState } from "react";
+import Item from "../components/Item";
 
 
 const Stack = createNativeStackNavigator();
-interface AppNavigatorProps {
-    items: { id: number; name: string; quantity: number }[]
-}
 
-const AppNavigator: React.FC<AppNavigatorProps> = (items) => {
+const AppNavigator=() => { 
  
     return ( 
         <NavigationContainer>
