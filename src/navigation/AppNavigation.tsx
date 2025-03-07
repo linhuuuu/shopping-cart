@@ -15,7 +15,10 @@ const AppNavigator=() => {
  
     return ( 
         <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator
+            screenOptions={{
+              headerShown: false, 
+            }}>
                 <Stack.Screen name="Home" component={Home}/>
                 <Stack.Screen name="Checkout" component={Checkout} />
                 <Stack.Screen name="Cart" component={Cart} />

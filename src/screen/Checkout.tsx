@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Provider as PaperProvider, Portal, Dialog, Button } from 'react-native-paper';
+import { Provider as PaperProvider, Portal, Dialog, Button, DefaultTheme } from 'react-native-paper';
 import { useContext } from 'react';
 import { CartContext } from '../navigation/CartContext';
 import { Props } from '../navigation/prop';
-
+import { style } from '../styles/Stylesheet';
+import CheckoutItemBlock from '../components/CheckoutItem';
 const Home: React.FC<Props> = ({ navigation }) => {
-  const { cartItems, totalPrice, emptyCart } = useContext(CartContext);
+  const {totalPrice, emptyCart } = useContext(CartContext);
   const [visible, setVisible] = useState(false);
 
   const showDialog = () => setVisible(true);
   const hideDialog = () => setVisible(false);
 
+
+  const { cartItems, shopItems } = useContext(CartContext);
   const handleCheckout = () => {
     emptyCart();
     hideDialog();
@@ -22,15 +25,23 @@ const Home: React.FC<Props> = ({ navigation }) => {
   };
 
   return (
-    <PaperProvider>
-      <View>
-        <Text> Checkout</Text>
-        <Text>Total Price: {totalPrice}</Text>
-        <TouchableOpacity onPress={showDialog}>
-          <Text> Checkout </Text>
+    <PaperProvider theme={DefaultTheme}>
+      <View style={[style.container, {alignItems:'center'}]}>
+        <View style={[{width:"80%",}]}>
+          <Text style={[style.header, { marginTop: 40, marginBottom:40}]}> Check Out</Text>
+          <View style={[]}>
+          {
+            cartItems.map((item) =>
+              <CheckoutItemBlock cart={item} shop={shopItems}/>
+            )
+          }
+        <Text style={style.itemtext}>Total Price: {totalPrice}</Text>
+        <TouchableOpacity onPress={showDialog} style={[style.button, style.center]}>
+          <Text style={style.white}> Order </Text>
         </TouchableOpacity>
+        </View>
 
-        {/* Dialog */}
+
         <Portal>
           <Dialog visible={visible} onDismiss={hideDialog}>
             <Dialog.Title>Checkout</Dialog.Title>
@@ -43,6 +54,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
             </Dialog.Actions>
           </Dialog>
         </Portal>
+      </View>
       </View>
     </PaperProvider>
   );
