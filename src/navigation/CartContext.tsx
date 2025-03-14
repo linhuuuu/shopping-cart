@@ -1,4 +1,5 @@
 import React, { useState, createContext, ReactNode } from "react";
+import { ImageSourcePropType } from "react-native";
 
 
 interface CartProviderProps {
@@ -16,6 +17,7 @@ type ShopItem = {
   name: string;
   price: number;
   quantity: number; 
+  image: ImageSourcePropType;
 
 };
 
@@ -42,15 +44,41 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     {
       id: 1,
       name: "Potato",
-      price: 60,
+      price: 10,
       quantity: 90,
+      image: require('../assets/potatoes.jpg')
      
     },
     {
       id: 2,
       name: "Tomato",
-      price: 40,
+      price: 11,
       quantity: 50,
+      image: require('../assets/tomatoes.jpg')
+    
+    },
+    {
+      id: 3,
+      name: "Lettuce",
+      price: 20,
+      quantity: 50,
+      image: require('../assets/lettuce.jpg')
+    
+    },
+    {
+      id: 4,
+      name: "Onion",
+      price: 10,
+      quantity: 50,
+      image: require('../assets/onion.jpg')
+    
+    },
+    {
+      id: 5,
+      name: "Carrots",
+      price: 15,
+      quantity: 50,
+      image: require('../assets/carrots.jpg')
     
     },
   ]);
@@ -63,7 +91,6 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   };
 
   const addToCart = (shopItem: ShopItem) => {
-    const MaxValue= shopItem.quantity;
 
     setShopItems((prevShopItems) =>
       prevShopItems.map((item) =>
