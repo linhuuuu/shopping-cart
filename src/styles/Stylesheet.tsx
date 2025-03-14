@@ -33,19 +33,24 @@ export const style = StyleSheet.create({
 
     },
     header: {
-      fontSize:30,
+      fontSize:50,
+      color:"#234000",
+      fontStyle:"italic",
+      fontWeight:"condensedBold"
+      
     },
     itemtext: {
       fontSize:20,
+      color:"#234000"
     },
     margin: {
       width:'80%',
     },
     button: {
-      borderRadius: 10,
-      borderColor: '#fff',
-      backgroundColor: '#000',
+      borderRadius: 100,
       borderWidth: 2,
+      borderColor:"#234000",
+      width:'80%', padding:10, backgroundColor: '#44730b'
     },
     white: {
       color:'#fff'
